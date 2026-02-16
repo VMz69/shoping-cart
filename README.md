@@ -112,9 +112,9 @@ El proyecto se desarrolló en equipo, asignando responsabilidades específicas:
 ├── /js
 │   ├── calculations.js
 │   ├── cart.js
-│   └── data.js
-│   └── main.js
-│   └──storage.js
+│   ├── data.js
+│   ├── main.js
+│   ├── storage.js
 │   └──ui.js
 │
 ├── /css
