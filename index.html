@@ -1,0 +1,47 @@
+<!--
+ARCHIVO: index.html
+
+Este archivo contiene SOLO la estructura base de la aplicación.
+No debe tener lógica de JavaScript.
+
+Responsabilidades:
+1. Contener los contenedores principales:
+   - Lista de productos.
+   - Carrito de compras.
+   - Botón de compra.
+   - Área de factura.
+2. Cargar los archivos CSS y JS.
+3. Definir los IDs que los demás módulos usarán para manipular el DOM.
+
+Importante:
+- No agregar scripts en línea.
+- No escribir lógica aquí.
+- Solo estructura HTML semántica.
+
+Este archivo es el punto de entrada del sistema.
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tienda POO</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+
+  <h1>Tienda</h1>
+
+  <section>
+    <h2>Productos</h2>
+    <div id="products"></div>
+  </section>
+
+  <section>
+    <h2>Carrito</h2>
+    <div id="cart"></div>
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
