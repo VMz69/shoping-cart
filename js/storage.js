@@ -1,22 +1,21 @@
 /*
 ARCHIVO: storage.js
 
-Este archivo gestiona el uso de localStorage.
+Este archivo gestiona la persistencia de datos.
 
 Responsabilidades:
-1. Guardar el carrito.
+1. Guardar el estado del carrito en localStorage.
 2. Cargar el carrito.
-3. Guardar inventario.
-4. Cargar inventario.
+3. Simular una base de datos local.
 
 Importante:
-- No manipular el DOM.
-- No hacer cálculos.
-- No modificar la lógica del negocio.
-- Solo persistencia de datos.
+- No contiene lógica de negocio.
+- No interactúa con el DOM.
+- No realiza cálculos.
 
-Este archivo simula una base de datos en el navegador.
+Este módulo permite mantener la información entre sesiones.
 */
+
 
 
 export function saveCart(cart) {

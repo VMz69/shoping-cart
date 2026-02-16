@@ -1,26 +1,24 @@
 /*
 ARCHIVO: main.js
 
-Este archivo es el punto central del sistema.
+Este archivo es el controlador principal del sistema.
 
 Responsabilidades:
 1. Inicializar la aplicación.
-2. Cargar inventario y carrito al iniciar.
-3. Configurar eventos globales.
-4. Conectar los módulos:
-   - data
-   - cart
-   - calculations
-   - ui
-   - storage
-5. Controlar el flujo general del sistema.
+2. Crear instancias de las clases (POO).
+3. Coordinar los módulos:
+   - Productos
+   - Carrito
+   - Interfaz
+   - Persistencia
+4. Configurar eventos globales.
+5. Controlar el flujo del sistema.
 
 Importante:
-- No contener lógica específica de un módulo.
-- Solo coordinar.
-- Mantener el código claro y organizado.
+- No contiene lógica específica de un módulo.
+- Solo integra y coordina.
 
-Este archivo asegura que todo funcione como un solo sistema.
+Este módulo garantiza que el sistema funcione de manera organizada.
 */
 
 

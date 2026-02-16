@@ -1,21 +1,20 @@
 /*
 ARCHIVO: calculations.js
 
-Este archivo contiene todas las operaciones matemáticas del sistema.
+Este archivo contiene funciones para cálculos del sistema.
 
 Responsabilidades:
-1. Calcular subtotal.
+1. Calcular totales.
 2. Calcular impuestos.
-3. Calcular total final.
-4. Calcular totales por producto.
+3. Calcular subtotales.
+4. Mantener funciones puras.
 
 Importante:
-- No manipular el DOM.
-- No modificar el carrito.
-- Solo recibir datos y devolver resultados.
-- Mantener funciones puras.
+- No modificar objetos del carrito.
+- No interactuar con el DOM.
+- No almacenar datos.
 
-Este archivo permite que el sistema sea modular y fácil de probar.
+Este módulo separa la lógica matemática de la lógica de negocio.
 */
 
 

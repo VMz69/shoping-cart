@@ -1,20 +1,22 @@
 /*
 ARCHIVO: styles.css
 
-Este archivo contiene todo el diseño visual de la aplicación.
+Este archivo contiene todo el diseño visual del sistema.
 
 Responsabilidades:
-1. Estilos del catálogo de productos.
+1. Estilos de los productos.
 2. Estilos del carrito.
 3. Estilos de la factura.
-4. Animaciones y feedback visual.
-5. Diseño responsivo si se desea.
+4. Diseño responsivo.
+5. Mejorar la experiencia de usuario.
 
 Importante:
-- No modificar la lógica JavaScript.
-- Evitar clases innecesarias.
-- Mantener el diseño limpio y organizado.
+- No modificar la lógica de negocio.
+- No interactuar con clases de JavaScript.
+- Solo presentación.
+
 */
+
 
 
 body {

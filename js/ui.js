@@ -1,24 +1,21 @@
 /*
 ARCHIVO: ui.js
 
-Este archivo se encarga de mostrar la información en pantalla.
+Este archivo gestiona la interfaz del usuario.
 
 Responsabilidades:
 1. Renderizar productos.
-2. Renderizar carrito.
-3. Mostrar factura.
-4. Mostrar mensajes al usuario.
-5. Actualizar la interfaz cuando cambian los datos.
+2. Mostrar el carrito.
+3. Mostrar la factura.
+4. Conectar eventos con los métodos de las clases.
 
 Importante:
-- No guardar datos.
-- No realizar cálculos.
-- No modificar directamente la lógica del carrito.
-- Solo interactuar con el DOM.
+- No contiene lógica de negocio.
+- No realiza cálculos.
+- Solo interactúa con el DOM.
 
-Este archivo conecta la lógica con la experiencia del usuario.
+Este módulo actúa como puente entre el usuario y las clases del sistema.
 */
-
 
 
 export function renderProducts(products, handler) {

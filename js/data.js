@@ -1,33 +1,28 @@
 /*
 ARCHIVO: data.js
 
-Este archivo contiene los productos ficticios del sistema.
+Este archivo define la clase Product y el inventario inicial.
 
 Responsabilidades:
-1. Definir el inventario inicial de la tienda.
-2. Cada producto debe tener:
-   - id
-   - nombre
-   - precio
-   - stock
-3. No debe contener lógica de negocio.
-4. Solo exportar los datos.
+1. Aplicar Programación Orientada a Objetos mediante la clase Product.
+2. Representar cada producto como un objeto.
+3. Simular una base de datos local.
+4. Exportar el inventario inicial.
 
-Este archivo simula una base de datos.
+Cada producto contiene:
+- id
+- nombre
+- precio
+- stock
 
 Importante:
-- No modificar la estructura del producto.
-- No agregar funciones complejas aquí.
-- Solo datos.
+- No contiene lógica del carrito.
+- No manipula el DOM.
+- No realiza cálculos.
 
-Ejemplo de producto:
-{
-  id: 1,
-  name: "Laptop",
-  price: 800,
-  stock: 5
-}
+Este módulo permite encapsular la información de los productos.
 */
+
 
 
 export class Product {
