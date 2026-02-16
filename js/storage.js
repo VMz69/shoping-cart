@@ -1,3 +1,4 @@
+//(JOSE)
 /*
 ARCHIVO: storage.js
 

@@ -27,6 +27,7 @@ import { products } from "./data.js";
 import { Cart } from "./cart.js";
 import { renderProducts, renderCart } from "./ui.js";
 import { saveCart, loadCart } from "./storage.js";
+import { getTotal } from "./calculations.js";
 
 const cart = new Cart();
 
@@ -36,12 +37,23 @@ cart.items = loadCart();
 function handleAdd(productId) {
   cart.add(productId);
   saveCart(cart);
-  renderCart(cart, products);
+  renderCartWithTotal();
+}
+
+function handleRemove(productId) {
+  cart.remove(productId);
+  saveCart(cart);
+  renderCartWithTotal();
+}
+
+function renderCartWithTotal() {
+  const total = getTotal(cart, products);
+  renderCart(cart, products, handleRemove, total);
 }
 
 function init() {
   renderProducts(products, handleAdd);
-  renderCart(cart, products);
+  renderCartWithTotal();
 }
 
 init();

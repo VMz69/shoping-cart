@@ -1,3 +1,5 @@
+//(WILLIAM | FERNANDO)
+
 /*
 ARCHIVO: ui.js
 
@@ -38,16 +40,37 @@ export function renderProducts(products, handler) {
   });
 }
 
-export function renderCart(cart, products) {
+
+export function renderCart(cart, products, removeHandler = null, total = null) {
   const container = document.getElementById("cart");
   container.innerHTML = "";
 
-  cart.items.forEach(item => {
+  cart.getItems().forEach(item => {
     const product = products.find(p => p.id === item.id);
 
     const div = document.createElement("div");
-    div.textContent = `${product.name} x ${item.quantity}`;
+
+    // Si existe removeHandler mostramos botón
+    if (removeHandler) {
+      div.innerHTML = `
+        ${product.name} x ${item.quantity}
+        <button data-id="${item.id}">Eliminar</button>
+      `;
+
+      div.querySelector("button")
+        .addEventListener("click", () => removeHandler(item.id));
+    } else {
+      div.textContent = `${product.name} x ${item.quantity}`;
+    }
 
     container.appendChild(div);
   });
+
+  // Mostrar total solo si existe
+  if (total !== null) {
+    const totalDiv = document.createElement("h3");
+    totalDiv.textContent = `Total: $${total}`;
+    container.appendChild(totalDiv);
+  }
 }
+

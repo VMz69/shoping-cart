@@ -1,3 +1,4 @@
+//(MILTON)
 /*
 ARCHIVO: cart.js
 
@@ -18,8 +19,6 @@ Importante:
 
 Este módulo encapsula la lógica del carrito.
 */
-
-
 
 export class Cart {
   constructor() {
@@ -43,4 +42,9 @@ export class Cart {
   clear() {
     this.items = [];
   }
+
+  getItems() {
+    return this.items;
+  }
 }
+

@@ -1,3 +1,5 @@
+//(FERNANDO)
+
 /*
 ARCHIVO: calculations.js
 
@@ -18,9 +20,8 @@ Este módulo separa la lógica matemática de la lógica de negocio.
 */
 
 
-
 export function getTotal(cart, products) {
-  return cart.items.reduce((acc, item) => {
+  return cart.getItems().reduce((acc, item) => {
     const product = products.find(p => p.id === item.id);
     return acc + product.price * item.quantity;
   }, 0);
