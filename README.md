@@ -1,239 +1,198 @@
-# 📌 Proyecto Web – Gestor de Tareas (POO + Git + Deploy)
+# 🛒 Sistema de Carrito de Compras con JavaScript (POO)
 
-## 📖 Descripción
+## 📌 Descripción
 
-Este proyecto consiste en el desarrollo de una aplicación web para la gestión de tareas, creada con **HTML, CSS y JavaScript** utilizando **Programación Orientada a Objetos (POO)**.
-El objetivo principal es aplicar buenas prácticas de desarrollo, trabajo en equipo con Git y despliegue en internet.
+Este proyecto consiste en el desarrollo de un **sistema de carrito de compras web** utilizando **HTML, CSS y JavaScript con Programación Orientada a Objetos (POO)**.
+El objetivo principal es aplicar conceptos como manipulación del DOM, manejo de eventos, validación de datos, modularización y control de inventarios.
 
-La aplicación permite:
+La aplicación permite a los usuarios:
 
-* Crear tareas
-* Visualizar tareas
-* Marcar tareas como completadas
-* Eliminar tareas
-* Guardar información en el navegador (LocalStorage)
+* Visualizar productos disponibles.
+* Agregar y eliminar productos del carrito.
+* Calcular totales automáticamente.
+* Generar una factura.
+* Mantener el estado del carrito utilizando **localStorage**.
 
 ---
 
 ## 🎯 Objetivos del proyecto
 
-* Aplicar conceptos de **POO en JavaScript**
-* Organizar el código en módulos
-* Trabajar en equipo usando **Git y GitHub**
-* Publicar el sitio web en internet
-* Documentar el desarrollo
+* Practicar JavaScript moderno.
+* Implementar POO en un sistema real.
+* Aplicar buenas prácticas de desarrollo.
+* Trabajar colaborativamente usando Git y ramas individuales.
+* Desplegar la aplicación en internet.
 
 ---
 
-## 🧱 Tecnologías utilizadas
+## 🚀 Tecnologías utilizadas
 
 * HTML5
 * CSS3
 * JavaScript (ES6+)
-* Programación Orientada a Objetos
+* Programación Orientada a Objetos (POO)
 * LocalStorage
 * Git y GitHub
-* Hosting web (GitHub Pages u otro)
+* GitHub Pages / Netlify / Vercel (hosting)
 
 ---
 
-## 🗂️ Estructura del proyecto
+## 🧩 Funcionalidades
 
-```
-/project
-│
-├── index.html
-├── style.css
-├── main.js
-├── Task.js
-├── TaskManager.js
-├── storage.js
-├── ui.js
-└── README.md
-```
+✔ Mostrar lista de productos con nombre, precio y stock.
+✔ Selección de cantidad y validación de entrada.
+✔ Agregar productos al carrito.
+✔ Eliminar productos del carrito.
+✔ Visualización dinámica del carrito.
+✔ Cálculo automático de totales.
+✔ Generación de factura.
+✔ Cálculo de impuestos.
+✔ Control de inventario después de cada compra.
+✔ Persistencia de datos en localStorage.
+✔ Continuar comprando después de facturar.
 
 ---
 
-## ⚙️ Explicación de archivos
+## 🧠 Programación Orientada a Objetos
 
-### 📄 index.html
+El sistema utiliza clases para organizar la lógica del proyecto:
 
-Contiene la estructura principal de la aplicación:
+* Producto
+* Carrito
+* Factura
+* Inventario
 
-* Formulario para crear tareas
-* Contenedor para mostrar tareas
-* Conexión con los archivos CSS y JS
-
-### 🎨 style.css
-
-Define el diseño visual:
-
-* Layout
-* Colores
-* Responsive
-* Estilos de tareas
-
-### 🚀 main.js
-
-Archivo principal:
-
-* Inicializa la aplicación
-* Conecta los módulos
-* Ejecuta el flujo general
-
-### 🧩 Task.js
-
-Clase que representa una tarea:
-
-* id
-* título
-* estado (completada o pendiente)
-
-### 📦 TaskManager.js
-
-Clase que administra las tareas:
-
-* Agregar
-* Eliminar
-* Cambiar estado
-* Obtener lista
-
-### 💾 storage.js
-
-Gestiona el almacenamiento en LocalStorage:
-
-* Guardar tareas
-* Cargar tareas
-
-### 🖥️ ui.js
-
-Controla la interacción con el usuario:
-
-* Renderizado de tareas
-* Eventos
-* Actualización de la interfaz
+Esto permite una estructura modular, reutilizable y fácil de mantener.
 
 ---
 
 ## 👥 Organización del equipo
 
-### 🔹 Integrante 1 – HTML y estructura
+El proyecto se desarrolló en equipo, asignando responsabilidades específicas:
 
-Responsable de:
+**Persona 1 – UI y productos**
 
-* index.html
-* Formularios
-* Layout base
+* Diseño visual.
+* Renderizado de productos.
+* Estilos CSS.
 
-### 🔹 Integrante 2 – CSS y diseño
+**Persona 2 – Carrito**
 
-Responsable de:
+* Lógica para agregar y eliminar productos.
+* Manejo del estado del carrito.
 
-* style.css
-* Diseño visual
-* Responsive
+**Persona 3 – Facturación**
 
-### 🔹 Integrante 3 – POO y lógica
+* Generación de factura.
+* Cálculo de impuestos.
 
-Responsable de:
+**Persona 4 – Inventario y validaciones**
 
-* Task.js
-* TaskManager.js
-* Modelado de clases
+* Control de stock.
+* Validación de entradas.
 
-### 🔹 Integrante 4 – Persistencia
+**Persona 5 – Coordinación y documentación**
 
-Responsable de:
-
-* storage.js
-* LocalStorage
-* Guardado y carga
-
-### 🔹 Integrante 5 – Interfaz y eventos
-
-Responsable de:
-
-* ui.js
-* Eventos
-* Renderizado
-
-### 🔹 Líder del proyecto
-
-Responsable de:
-
-* Integración
-* Git
-* Merge
-* Deploy
+* Integración del sistema.
+* Uso de Git y control de versiones.
+* Despliegue en hosting.
+* Documentación.
 
 ---
 
-## 🔄 Flujo de trabajo con Git
+## 📂 Estructura del proyecto
 
-1. Clonar repositorio
-2. Crear rama propia
-3. Trabajar en el archivo asignado
-4. Commit con mensajes claros
-5. Pull request
-6. Revisión
-7. Merge
-
----
-
-## 🌐 Deploy del proyecto
-
-El sitio será publicado en:
-
-* GitHub Pages u otro hosting
-
-Esto permite:
-
-* Acceso público
-* Pruebas reales
-* Evaluación del funcionamiento
-
----
-
-## 🧪 Funcionalidades principales
-
-* Crear tareas
-* Listar tareas
-* Marcar como completadas
-* Eliminar tareas
-* Persistencia de datos
+```
+/project
+│
+├── index.html
+|
+├── /img
+│
+├── /js
+│   ├── calculations.js
+│   ├── cart.js
+│   └── data.js
+│   └── main.js
+│   └──storage.js
+│   └──ui.js
+│
+├── /css
+│   └── styles.css
+│
+└── /docs
+    └── documento.docx
+```
 
 ---
 
-## 📊 Criterios de evaluación cubiertos
+## 🔧 Cómo ejecutar el proyecto
 
-✔ Uso de Git
-✔ Sitio alojado en internet
-✔ Documento explicativo
-✔ Programación Orientada a Objetos
-✔ Funcionalidad
-✔ Trabajo en equipo
+1. Clonar el repositorio:
 
----
+```
+git clone URL_DEL_REPOSITORIO
+```
 
-## 🚀 Mejoras futuras
+2. Abrir el archivo:
 
-* Filtros de tareas
-* Categorías
-* Usuarios
-* Backend
-* Base de datos
-* Autenticación
-* API
+```
+index.html
+```
+
+en cualquier navegador moderno.
+
+No se requiere instalación adicional.
 
 ---
 
-## 📌 Conclusión
+## 🌐 Despliegue
 
-Este proyecto permite aplicar conceptos clave del desarrollo web moderno, organización de código, trabajo colaborativo y despliegue de aplicaciones reales.
+El proyecto está disponible en:
+👉 **[Enlace del sitio web aquí]**
 
 ---
 
-## 👨‍💻 Autor
+## 📌 Buenas prácticas aplicadas
 
-Equipo de desarrollo web
-2026
+* Código modular.
+* Uso de funciones y clases.
+* Validaciones.
+* Comentarios claros.
+* Separación de responsabilidades.
+* Control de versiones con Git.
+
+---
+
+## 📄 Documento
+
+Se entrega un documento adicional que explica:
+
+* Arquitectura del sistema.
+* Flujo de funcionamiento.
+* Diseño de clases.
+* Decisiones técnicas.
+
+---
+
+## 📊 Evaluación
+
+Este proyecto cumple con:
+
+* Uso de Git.
+* POO.
+* Hosting.
+* Funcionalidad.
+* Documentación.
+
+---
+
+## 🎨 Creatividad
+
+El diseño y los productos pueden ser personalizados para diferentes tipos de tiendas (tecnología, ropa, videojuegos, etc.).
+
+---
+
+## 📌 Autoría
+
+Proyecto desarrollado con fines educativos para la práctica de JavaScript y desarrollo web.
