@@ -24,20 +24,20 @@ Importante:
 
 
 /* =========================
-   COLORES
+   COLORES globales si cambio colores aqui lo hace en todos los elementos referenciados
    ========================= */
 :root {
   --bg: #f6f7fb;
   --card: #ffffff;
   --text: #1f2937;
   --muted: #6b7280;
-  --brand: #0b5cab;        /* azul del encabezado*/
+  --brand: #0b5cab;        /* azul del encabezado(header*/
   --brand-2: #0d6efd;
   --danger: #d32f2f;
   --ring: 0 0 0 3px rgba(13, 110, 253, 0.25);
   --radius: 12px;
 
-  /* Tipografía fluida */
+  /* Esto es para que las fuentes se adapten segun la pantalla */
   --step--1: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
   --step-0: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
   --step-1: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
@@ -72,8 +72,7 @@ body {
    Header / Footer
    ========================= */
 .site-header {
-  backdrop-filter: saturate(120%) blur(6px);
-  background: linear-gradient(180deg, rgba(11,92,171,0.95), rgba(11,92,171,0.85));
+ background: linear-gradient(180deg, rgba(11,92,171,0.95), rgba(11,92,171,0.50));
   color: #fff;
   position: sticky; top: 0; z-index: 10;
   border-bottom: 1px solid rgba(255,255,255,0.15);
