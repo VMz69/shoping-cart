@@ -65,3 +65,39 @@ export function loadCart() {
 export function clearCart() {
   localStorage.removeItem("cart");
 }
+
+
+/**
+ * Reduce el stock del inventario.
+ * @param {Array} cartItems - Lista de productos en el carrito.
+ * @param {Array} allProducts - El inventario completo.
+ * @returns {Object} Resultado de la operación con éxito o error.
+ */
+export function processStockReduction(cartItems, allProducts) {
+  // 1. Validar que hay stock para TODOS los productos antes de restar nada
+  for (const item of cartItems) {
+    const product = allProducts.find(p => p.id === item.id);
+    
+    if (!product) {
+      return { success: false, message: `Producto ID ${item.id} no encontrado.` };
+    }
+
+    if (item.quantity > product.stock) {
+      return { 
+        success: false, 
+        message: `Lo sentimos el stock es insuficiente para ${product.name}. Disponible: ${product.stock}, Solicitado: ${item.quantity}, para mayor informacion favor contactar atencion al cliente` 
+      };
+    }
+  }
+
+  // 2. Si llegamos aquí, hay stock para todo.
+  cartItems.forEach(item => {
+    const product = allProducts.find(p => p.id === item.id);
+    product.stock -= item.quantity;
+  });
+
+  // 3. Persistencia: Guardar el inventario actualizado.
+  saveInventory(allProducts);
+  
+  return { success: true, message: "Inventario actualizado correctamente." };
+}
