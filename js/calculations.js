@@ -52,9 +52,9 @@ export function getSubtotals(cart, products) {
     const product = products.find(p => p.id === item.id);
     if (!product) return null;
     return {
-      name: product.name,
-      price: product.price,
-      quantity: item.quantity,
+      nombre: product.name,
+      precio: product.price,
+      cantidad: item.quantity,
       subtotal: getItemTotal(product.price, item.quantity)
     };
   }).filter(Boolean);
