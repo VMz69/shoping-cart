@@ -19,7 +19,6 @@ Importante:
 Este módulo actúa como puente entre el usuario y las clases del sistema.
 */
 
-
 export function renderProducts(products, handler) {
   const container = document.getElementById("products");
   container.innerHTML = "";
@@ -40,7 +39,6 @@ export function renderProducts(products, handler) {
   });
 }
 
-
 export function renderCart(cart, products, removeHandler = null, total = null) {
   const container = document.getElementById("cart");
   container.innerHTML = "";
@@ -50,13 +48,11 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
 
     const div = document.createElement("div");
 
-    // Si existe removeHandler mostramos botón
     if (removeHandler) {
       div.innerHTML = `
         ${product.name} x ${item.quantity}
         <button data-id="${item.id}">Eliminar</button>
       `;
-
       div.querySelector("button")
         .addEventListener("click", () => removeHandler(item.id));
     } else {
@@ -66,7 +62,6 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
     container.appendChild(div);
   });
 
-  // Mostrar total solo si existe
   if (total !== null) {
     const totalDiv = document.createElement("h3");
     totalDiv.textContent = `Total: $${total}`;
@@ -74,3 +69,41 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
   }
 }
 
+// NUEVA FUNCIÓN: Renderizar factura
+export function renderInvoice(invoiceData) {
+  const container = document.getElementById("invoice");
+
+  if (!invoiceData || !invoiceData.items || invoiceData.items.length === 0) {
+    container.innerHTML = "<p>No hay datos de factura disponibles.</p>";
+    return;
+  }
+
+  const { items, total } = invoiceData;
+
+  container.innerHTML = `
+    <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${items.map(p => `
+          <tr>
+            <td>${p.nombre}</td>
+            <td>${p.cantidad}</td>
+            <td>$${p.precio.toFixed(2)}</td>
+            <td>$${(p.precio * p.cantidad).toFixed(2)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+    <p><strong>Subtotal:</strong> $${total.subtotal.toFixed(2)}</p>
+    <p><strong>Impuestos:</strong> $${total.impuestos.toFixed(2)}</p>
+    <p><strong>Total:</strong> $${total.final.toFixed(2)}</p>
+  `;
+}
