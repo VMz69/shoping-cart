@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Factura</title>
+  <link rel="stylesheet" href="./css/invoice.css">
+</head>
+<body>
+  <section class="invoice">
+    <h2 id="Factura">
+  <img
+        src="https://i.ibb.co/K4Xfk5c/logo-1-color.png"
+        class="logo"
+        width="400"
+        height="65"
+      />
+  Factura Electrónica
+</h2>
+    <div id="invoice"></div>
+    <div class="invoice-actions">
+      <button id="print-invoice" class="btn primary">Imprimir</button>
+      <button id="back-to-cart" class="btn secondary">Seguir comprando</button>
+    </div>
+  </section>
+
+  <script type="module">
+    import { getInvoiceData } from "./js/storage.js";
+    import { renderInvoice } from "./js/ui.js";
+
+    const data = getInvoiceData();
+    renderInvoice(data);
+
+    // para imprimir
+    document.getElementById("print-invoice").addEventListener("click", () => {
+      window.print();
+    });
+
+    //por si queremos regresar al index del carrito
+    document.getElementById("back-to-cart").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
