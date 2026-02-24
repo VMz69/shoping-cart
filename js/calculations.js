@@ -36,9 +36,28 @@ export function getSubtotal(cart, products) {
   }, 0);
 }
 
-// Calcula el monto de impuestos sobre el subtotal.
+// Calcula el monto de impuestos con una tasa configurable.
+export function calculateTax(total, rate) {
+  return total * rate;
+}
+
+// Calcula el IVA sobre el subtotal usando la tasa predeterminada (13%).
 export function getTax(subtotal) {
-  return subtotal * TAX;
+  return calculateTax(subtotal, TAX);
+}
+
+// Retorna lista con nombre, precio unitario, cantidad y subtotal por cada producto en el carrito.
+export function getSubtotals(cart, products) {
+  return cart.getItems().map(item => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return null;
+    return {
+      name: product.name,
+      price: product.price,
+      quantity: item.quantity,
+      subtotal: getItemTotal(product.price, item.quantity)
+    };
+  }).filter(Boolean);
 }
 
 // Calcula el total general del carrito incluyendo impuestos.
@@ -50,6 +69,16 @@ export function getTotal(cart, products) {
 // Formatea un numero como precio en dolares con 2 decimales.
 export function formatPrice(amount) {
   return `$${amount.toFixed(2)}`;
+}
+
+// Genera un objeto factura con productos, subtotales, impuestos y total general.
+export function generateInvoice(cart, products, taxRate = TAX) {
+  const items = getSubtotals(cart, products);
+  const subtotal = getSubtotal(cart, products);
+  const tax = calculateTax(subtotal, taxRate);
+  const total = subtotal + tax;
+
+  return { items, subtotal, tax, total };
 }
 
 // Valida que la cantidad ingresada sea un numero entero positivo y no exceda el stock disponible.
