@@ -34,6 +34,7 @@ Importante:
   --brand: #0b5cab;        /* azul del encabezado(header*/
   --brand-2: #0d6efd;
   --danger: #d32f2f;
+  --green :rgb(47, 119, 47);
   --ring: 0 0 0 3px rgba(13, 110, 253, 0.25);
   --radius: 12px;
 
@@ -231,6 +232,9 @@ body {
 .btn.primary:hover { background: var(--brand-2); }
 .btn.danger { background: var(--danger); color: #fff; }
 .btn.danger:hover { filter: brightness(1.05); }
+/* boton de compra en modal (agregado por victor)*/
+.btn.purchase { background: var(--green); color: #fff; }
+.btn.purchase:hover { background: #3ba52a; }
 
 /* =========================
    Carrito

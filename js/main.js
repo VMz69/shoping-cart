@@ -67,6 +67,7 @@ function setupCheckout() {
   const printBtn = document.getElementById("print-invoice");
   const checkoutBtn = document.getElementById("checkout");
   const clearBtn = document.getElementById("clear-cart");
+  const purchaseBtn = document.getElementById("purchase")
 
   function openModal() {
     if (cart.getItems().length === 0) {
@@ -85,11 +86,25 @@ function setupCheckout() {
     document.body.style.overflow = "";
   }
 
+  function finalizePurchase(){
+    alert("Compra finalizada con exito")
+    cart.clear()
+    saveCart(cart);
+    renderCartWithTotal();
+    closeModal()
+  }
+  // se debe vaciar el carrito al finalizar la compra
+    //   console.log("el carrito debe vaciarse")
+    // cart.clear()
+    // saveCart(cart);
+    // renderCartWithTotal();
+
   checkoutBtn.addEventListener("click", openModal);
   overlay.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
   closeBtnFtr.addEventListener("click", closeModal);
   printBtn.addEventListener("click", () => window.print());
+  purchaseBtn.addEventListener("click", finalizePurchase)
 
   // Vaciar carrito
   clearBtn.addEventListener("click", () => {

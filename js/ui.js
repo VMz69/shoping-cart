@@ -23,7 +23,7 @@ export function renderProducts(products, handler) {
   const container = document.getElementById("products");
   container.innerHTML = "";
 
-  products.forEach(p => {
+  products.forEach((p) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
@@ -32,8 +32,7 @@ export function renderProducts(products, handler) {
       <button data-id="${p.id}">Agregar</button>
     `;
 
-    div.querySelector("button")
-      .addEventListener("click", () => handler(p.id));
+    div.querySelector("button").addEventListener("click", () => handler(p.id));
 
     container.appendChild(div);
   });
@@ -43,8 +42,8 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
   const container = document.getElementById("cart");
   container.innerHTML = "";
 
-  cart.getItems().forEach(item => {
-    const product = products.find(p => p.id === item.id);
+  cart.getItems().forEach((item) => {
+    const product = products.find((p) => p.id === item.id);
 
     const div = document.createElement("div");
 
@@ -53,7 +52,8 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
         ${product.name} x ${item.quantity}
         <button data-id="${item.id}">Eliminar</button>
       `;
-      div.querySelector("button")
+      div
+        .querySelector("button")
         .addEventListener("click", () => removeHandler(item.id));
     } else {
       div.textContent = `${product.name} x ${item.quantity}`;
@@ -63,8 +63,23 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
   });
 
   if (total !== null) {
-    const totalDiv = document.createElement("h3");
-    totalDiv.textContent = `Total: $${total}`;
+    const totalDiv = document.createElement("div");
+    totalDiv.style.display = "flex";
+    totalDiv.style.justifyContent = "space-between";
+    totalDiv.style.width = "100%";
+
+    // Elemento para el texto "Total:"
+    const textoSpan = document.createElement("span");
+    textoSpan.textContent = "Total:";
+    textoSpan.style.fontWeight = "bold";
+
+    // Elemento para el monto
+    const montoSpan = document.createElement("span");
+    montoSpan.textContent = `$${total}`;
+    montoSpan.style.fontWeight = "bold";
+
+    totalDiv.appendChild(textoSpan);
+    totalDiv.appendChild(montoSpan);
     container.appendChild(totalDiv);
   }
 }
@@ -92,14 +107,18 @@ export function renderInvoice(invoiceData) {
         </tr>
       </thead>
       <tbody>
-        ${items.map(p => `
+        ${items
+          .map(
+            (p) => `
           <tr>
             <td>${p.nombre}</td>
             <td>${p.cantidad}</td>
             <td>$${p.precio.toFixed(2)}</td>
             <td>$${(p.precio * p.cantidad).toFixed(2)}</td>
           </tr>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </tbody>
     </table>
     <p><strong>Subtotal:</strong> $${total.subtotal.toFixed(2)}</p>
