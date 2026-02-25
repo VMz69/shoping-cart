@@ -25,8 +25,7 @@ Importante:
 Este módulo permite encapsular la información de los productos.
 */
 
-Este archivo define la clase Product y gestiona el inventario inicial con persistencia.
-*/
+import { loadInventory, saveInventory } from "./storage.js";
 
 export class Product {
   constructor(id, name, price, stock) {
@@ -41,7 +40,6 @@ export class Product {
   }
 }
 
-// 1. Inventario base (Solo se usa la primera vez que se abre la app)
 const initialProducts = [
   new Product(1, "Laptop", 800, 5),
   new Product(2, "Mouse", 20, 10),
@@ -65,15 +63,14 @@ const initialProducts = [
   new Product(20, "NVIDIA Quadro RTX 4000", 900, 2)
 ];
 
-// 2. Lógica de persistencia de inventario
-// Intentamos obtener el inventario del localStorage; si no existe, usamos el inicial.
-const storedInventory = JSON.parse(localStorage.getItem("inventory"));
-
-export const products = storedInventory 
-  ? storedInventory.map(p => new Product(p.id, p.name, p.price, p.stock)) 
+// Cargamos el inventario persistido o usamos el inicial
+const stored = loadInventory();
+export const products = stored 
+  ? stored.map(p => new Product(p.id, p.name, p.price, p.stock)) 
   : initialProducts;
 
-// Si es la primera vez, guardamos el inventario inicial en localStorage inmediatamente
-if (!storedInventory) {
-  localStorage.setItem("inventory", JSON.stringify(products));
+// Si es la primera vez, guardamos el inicial para que exista en el storage//
+if (!stored) {
+  saveInventory(products);
 }
+
