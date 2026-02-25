@@ -28,19 +28,28 @@ export class Cart {
   add(productId, quantity) { //Enviar cantidad opcional, al estilo  cart.add(productId, quantity);, si no se envía, se agrega 1 por defecto
     const item = this.items.find(p => p.id === productId);
 
-    if (quantity === undefined) {
-    if (item) {
-      item.quantity++;
-    } else {
-      this.items.push({ id: productId, quantity: 1 });
+
+    if (quantity === undefined) { //Si el campo esta vacio y se presiona el boton de agregar, se agrega 1 por defecto
+      if (item) {
+        item.quantity++; //Solo sumamos 1 si ya hay productos
+      } else {
+        this.items.push({ id: productId, quantity: 1 }); //Agrego nuevo producto con valor inicial 1
+      } return;
+    } 
+
+    if (typeof quantity !== 'number' || Number.isNaN(quantity)) { //Si lo que se metio en el campo no es numero
+      throw new Error("El numero ingresado no es valido");
     }
 
-    } else { // Si si hay cantidad, se agrega al producto ya existente o se agrega un nuevo producto con la cantidad recibida
+    if (quantity <= 0) { //Si todo al anterior es superado, veamos si el numero es menor a 0. 
+      throw new Error("La cantidad debe ser mayor a 0");
+    }
+
     if (item) {
-      item.quantity += quantity;
+      item.quantity += quantity; //Solo sumamos 1 si ya hay productos
     } else {
-      this.items.push({ id: productId, quantity });
-    }}
+      this.items.push({ id: productId, quantity: quantity }); //Agrego nuevo producto con valor inicial 1
+    }
 
   }
 
