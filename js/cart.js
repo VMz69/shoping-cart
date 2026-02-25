@@ -25,22 +25,31 @@ export class Cart {
     this.items = [];
   }
 
-  add(productId) {
+  add(productId, quantity) { //Enviar cantidad opcional, al estilo  cart.add(productId, quantity);, si no se envía, se agrega 1 por defecto
     const item = this.items.find(p => p.id === productId);
 
+    if (quantity === undefined) {
     if (item) {
       item.quantity++;
     } else {
       this.items.push({ id: productId, quantity: 1 });
     }
+
+    } else { // Si si hay cantidad, se agrega al producto ya existente o se agrega un nuevo producto con la cantidad recibida
+    if (item) {
+      item.quantity += quantity;
+    } else {
+      this.items.push({ id: productId, quantity });
+    }}
+
   }
 
-  remove(productId) {
+  remove(productId, quantity) {
     this.items = this.items.filter(p => p.id !== productId);
   }
 
   clear() {
-    this.items = [];
+    this.items = []; // Vacia el carrito por completo.
   }
 
   getItems() {
