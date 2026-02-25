@@ -32,13 +32,9 @@ export class Product {
     this.price = price;
     this.stock = stock;
   }
-
-  getFormattedPrice() {
-    return `$${this.price.toFixed(2)}`;
-  }
 }
 
-const initialProducts = [
+export const products = [
   new Product(1, "Laptop", 800, 5),
   new Product(2, "Mouse", 20, 10),
   new Product(3, "Teclado", 50, 7),
