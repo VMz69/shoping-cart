@@ -24,20 +24,21 @@ Importante:
 
 
 /* =========================
-   COLORES
+   COLORES globales si cambio colores aqui lo hace en todos los elementos referenciados
    ========================= */
 :root {
   --bg: #f6f7fb;
   --card: #ffffff;
   --text: #1f2937;
   --muted: #6b7280;
-  --brand: #0b5cab;        /* azul del encabezado*/
+  --brand: #0b5cab;        /* azul del encabezado(header*/
   --brand-2: #0d6efd;
   --danger: #d32f2f;
+  --green :rgb(47, 119, 47);
   --ring: 0 0 0 3px rgba(13, 110, 253, 0.25);
   --radius: 12px;
 
-  /* Tipografía fluida */
+  /* Esto es para que las fuentes se adapten segun la pantalla */
   --step--1: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
   --step-0: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
   --step-1: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
@@ -72,8 +73,7 @@ body {
    Header / Footer
    ========================= */
 .site-header {
-  backdrop-filter: saturate(120%) blur(6px);
-  background: linear-gradient(180deg, rgba(11,92,171,0.95), rgba(11,92,171,0.85));
+ background: linear-gradient(180deg, rgba(11,92,171,0.95), rgba(11,92,171,0.50));
   color: #fff;
   position: sticky; top: 0; z-index: 10;
   border-bottom: 1px solid rgba(255,255,255,0.15);
@@ -232,6 +232,9 @@ body {
 .btn.primary:hover { background: var(--brand-2); }
 .btn.danger { background: var(--danger); color: #fff; }
 .btn.danger:hover { filter: brightness(1.05); }
+/* boton de compra en modal (agregado por victor)*/
+.btn.purchase { background: var(--green); color: #fff; }
+.btn.purchase:hover { background: #3ba52a; }
 
 /* =========================
    Carrito
@@ -266,6 +269,118 @@ body {
   margin-top: 0.8rem;
 }
 .cart-actions { gap: 0.5rem; }
+
+/* =========================
+   Modal de Factura
+   ========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  width: min(680px, 92vw);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: var(--step-1);
+  color: var(--brand);
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  transition: background 120ms;
+}
+.modal-close:hover { background: rgba(0, 0, 0, 0.07); }
+
+.modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Tabla dentro del modal */
+.modal-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+  margin-top: 0.75rem;
+}
+
+.modal-body th,
+.modal-body td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.modal-body thead th {
+  background: var(--bg);
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.modal-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.modal-body p {
+  margin: 0.4rem 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/*Estilo para impresion de factura con modal*/
+@media print {
+  body > *:not(#invoice-modal) { display: none !important; }
+  .modal-overlay, .modal-header, .modal-footer { display: none !important; }
+  .modal, .modal-content { position: static; box-shadow: none; max-height: none; }
+}
 
 /* =========================
    Aqui lo hice Responsivo

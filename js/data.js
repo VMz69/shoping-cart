@@ -25,8 +25,6 @@ Importante:
 Este módulo permite encapsular la información de los productos.
 */
 
-import { loadInventory, saveInventory } from "./storage.js";
-
 export class Product {
   constructor(id, name, price, stock) {
     this.id = id;
@@ -60,17 +58,5 @@ const initialProducts = [
   new Product(17, "Intel Arc A770", 320, 3),
   new Product(18, "NVIDIA RTX 4080 Super", 1000, 3),
   new Product(19, "AMD Radeon RX 7900 XTX", 950, 4),
-  new Product(20, "NVIDIA Quadro RTX 4000", 900, 2)
+  new Product(20, "NVIDIA Quadro RTX 4000", 900, 2),
 ];
-
-// Cargamos el inventario persistido o usamos el inicial
-const stored = loadInventory();
-export const products = stored 
-  ? stored.map(p => new Product(p.id, p.name, p.price, p.stock)) 
-  : initialProducts;
-
-// Si es la primera vez, guardamos el inicial para que exista en el storage//
-if (!stored) {
-  saveInventory(products);
-}
-
