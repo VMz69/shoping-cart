@@ -25,6 +25,8 @@ Importante:
 Este módulo permite encapsular la información de los productos.
 */
 
+import { loadInventory, saveInventory } from "./storage.js";
+
 export class Product {
   constructor(id, name, price, stock, image) {
     this.id = id;
@@ -33,9 +35,13 @@ export class Product {
     this.stock = stock;
     this.image = image;
   }
+
+  getFormattedPrice() {
+    return `$${this.price.toFixed(2)}`;
+  }
 }
 
-export const products = [
+export const initialProducts = [
   new Product(1, "Laptop", 800, 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBTF0Trz6nDdjFWDqsbcMcryfZaocJnhHdQ&s"),
   new Product(2, "Mouse", 20, 10, "https://webobjects2.cdw.com/is/image/CDW/2881640?$product-main$"),
   new Product(3, "Teclado", 50, 7, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkYcLTrmWNaRi3B6-ebAYk-ZqXXeSrwLrVY5kmJ-h11w&s"),
@@ -56,3 +62,15 @@ export const products = [
   new Product(19, "AMD Radeon RX 7900 XTX", 950, 4, "https://www.gigabyte.com/FileUpload/Global/News/2150/o202402261644047237.jpg"),
   new Product(20, "NVIDIA Quadro RTX 4000", 900, 2, "https://m.media-amazon.com/images/I/71l7sbREViL._AC_SL1500_.jpg"),
 ];
+
+// Cargamos el inventario persistido o usamos el inicial
+const stored = loadInventory();
+export const products = stored 
+  ? stored.map(p => new Product(p.id, p.name, p.price, p.stock)) 
+  : initialProducts;
+
+// Si es la primera vez, guardamos el inicial para que exista en el storage//
+if (!stored) {
+  saveInventory(products);
+}
+
