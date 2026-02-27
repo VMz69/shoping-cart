@@ -55,8 +55,22 @@ function init() {
   renderProducts(products, handleAdd);
   renderCartWithTotal();
   setupCheckout();
+  setupSearch();
 }
 
+function setupSearch() {
+  const searchInput = document.getElementById("search");
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(query)
+    );
+
+    renderProducts(filtered, handleAdd);
+  });
+}
 
 // Configura eventos para el proceso de checkout y generación de factura con modal
 function setupCheckout() {
@@ -112,6 +126,7 @@ function setupCheckout() {
     saveCart(cart);
     renderCartWithTotal();
   });
+  
 }
 
 init();

@@ -19,22 +19,30 @@ Importante:
 Este módulo actúa como puente entre el usuario y las clases del sistema.
 */
 
-export function renderProducts(products, handler) {
-  const container = document.getElementById("products");
-  container.innerHTML = "";
+export function renderProducts(products, handleAdd) {
+  const grid = document.querySelector(".products-grid");
+  grid.innerHTML = "";
 
-  products.forEach((p) => {
-    const div = document.createElement("div");
+  products.forEach(p => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
 
-    div.innerHTML = `
-      <strong>${p.name}</strong>
-      - $${p.price}
-      <button data-id="${p.id}">Agregar</button>
+    card.innerHTML = `
+      <div class="product-media">
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+      <div class="product-body">
+        <h3 class="product-title">${p.name}</h3>
+        <p class="product-price">$${p.price}</p>
+        <span class="product-desc">${p.stock == 1? p.stock + " Disponible" : p.stock + " Disponibles"}</span>
+      </div>
+      <div class="product-actions">
+        <button class="btn add">Agregar</button>
+      </div>
     `;
 
-    div.querySelector("button").addEventListener("click", () => handler(p.id));
-
-    container.appendChild(div);
+    card.querySelector(".btn.add").addEventListener("click", () => handleAdd(p.id));
+    grid.appendChild(card);
   });
 }
 
@@ -46,44 +54,37 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
     const product = products.find((p) => p.id === item.id);
 
     const div = document.createElement("div");
+    div.classList.add("cart-item");
+
+    div.innerHTML = `
+      <img class="cart-thumb" src="${product.image}" alt="${product.name}">
+      <div class="cart-meta">
+        <strong>${product.name}</strong>
+        <small>Cantidad: ${item.quantity}</small>
+        <small>Precio: $${product.price}</small>
+      </div>
+      <div class="cart-actions-row">
+        ${removeHandler ? `<button class="btn danger" data-id="${item.id}">Eliminar</button>` : ""}
+      </div>
+    `;
 
     if (removeHandler) {
-      div.innerHTML = `
-        ${product.name} x ${item.quantity}
-        <button data-id="${item.id}">Eliminar</button>
-      `;
-      div
-        .querySelector("button")
-        .addEventListener("click", () => removeHandler(item.id));
-    } else {
-      div.textContent = `${product.name} x ${item.quantity}`;
+      div.querySelector("button").addEventListener("click", () => removeHandler(item.id));
     }
 
     container.appendChild(div);
   });
 
-  if (total !== null) {
-    const totalDiv = document.createElement("div");
-    totalDiv.style.display = "flex";
-    totalDiv.style.justifyContent = "space-between";
-    totalDiv.style.width = "100%";
-
-    // Elemento para el texto "Total:"
-    const textoSpan = document.createElement("span");
-    textoSpan.textContent = "Total:";
-    textoSpan.style.fontWeight = "bold";
-
-    // Elemento para el monto
-    const montoSpan = document.createElement("span");
-    montoSpan.textContent = `$${total}`;
-    montoSpan.style.fontWeight = "bold";
-
-    totalDiv.appendChild(textoSpan);
-    totalDiv.appendChild(montoSpan);
-    container.appendChild(totalDiv);
+  if (total) {
+    const summary = document.createElement("div");
+    summary.classList.add("cart-summary");
+    summary.innerHTML = `
+      <span><strong>Total:</strong></span>
+      <span>$${total}</span>
+    `;
+    container.appendChild(summary);
   }
 }
-
 // NUEVA FUNCIÓN: Renderizar factura
 export function renderInvoice(invoiceData) {
   const container = document.getElementById("invoice");
