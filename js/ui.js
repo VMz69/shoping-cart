@@ -50,7 +50,7 @@ export function renderProducts(products, handleAdd) {
           <button class="qty-inc" aria-label="Aumentar cantidad" type="button">+</button>
         </div>
 
-        <button class="btn add add-btn">Agregar</button>
+        <button class="btn add add-btn btn primary">Agregar</button>
       </div>
     `;
 
