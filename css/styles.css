@@ -69,6 +69,19 @@ body {
   border: 0;
 }
 
+/* Esconder Flechas de typeNumeric Para Chrome, Safari, Edge, Opera */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Esconder Flechas de typeNumeric Para Firefox */
+.qty-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 /* =========================
    Header / Footer
    ========================= */
