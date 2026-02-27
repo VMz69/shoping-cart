@@ -56,11 +56,40 @@ export class Cart {
     }
   }
 
-  remove(){
-    console.log("Producto(s) eliminado(s) del carrito");
+  remove(productId: string, quantity?: number): void {
+    const itemIndex = this.items.findIndex(p => p.id === productId);
+
+    if (itemIndex === -1) {
+      throw new Error("Producto no encontrado en el carrito");
+    }
+
+    if (quantity === undefined) {
+      this.items.splice(itemIndex, 1);
+      return;
+    }
+
+    if (typeof quantity !== "number" || Number.isNaN(quantity)) {
+      throw new Error("La cantidad ingresada no es válida. No se puede eliminar el producto.");
+    }
+
+    if (quantity <= 0) {
+      throw new Error("La cantidad debe ser mayor a 0");
+    }
+
+    const item = this.items[itemIndex];
+    if (item.quantity < quantity) {
+      throw new Error("La cantidad a eliminar excede la cantidad de productos en el carrito");
+    }
+
+    if (item.quantity === quantity) {
+      this.items.splice(itemIndex, 1);
+    } else {
+      item.quantity -= quantity;
+    }
   }
 
   clear(){
+    this.items = [];
     console.log("Carrito vaciado");
   }
 
