@@ -109,21 +109,20 @@ export function renderCart(cart, products, removeHandler = null, total = null) {
     const div = document.createElement("div");
     div.classList.add("cart-item");
 
-    div.innerHTML = `
-      <img class="cart-thumb" src="${product.image}" alt="${product.name}">
-      <div class="cart-meta">
-        <strong>${product.name}</strong>
-        <small>Cantidad: ${item.quantity}</small>
-        <small>Precio: $${product.price}</small>
-      </div>
-      <div class="cart-actions-row">
-        ${removeHandler ? `<button class="btn danger" data-id="${item.id}">Eliminar</button>` : ""}
-      </div>
-    `;
+div.innerHTML = `
+  <img class="cart-thumb" src="${product.image}" alt="${product.name}">
+  
+  <div class="cart-meta">
+    <strong>${product.name}</strong>
+    <small>Precio: $${product.price}</small>
+    <small>Cantidad: ${item.quantity}</small>
+  </div>
 
-    if (removeHandler) {
-      div.querySelector("button").addEventListener("click", () => removeHandler(item.id));
-    }
+  <div class="cart-actions-row">
+    <button class="btn decrease btn primary" data-id="${item.id}"> Quitar 1</button>
+    ${removeHandler ? `<button class="btn danger" data-id="${item.id}">Eliminar</button>` : ""}
+  </div>
+`;
 
     container.appendChild(div);
   });

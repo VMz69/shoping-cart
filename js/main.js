@@ -34,7 +34,7 @@ const cart = new Cart();
 // cargar carrito si existe
 cart.items = loadCart();
 
-function handleAdd(productId) {
+function handleAdd(productId, quantity = 1) {
 
   const product = products.find(p => p.id === productId);
   if (!product) return;
@@ -45,12 +45,13 @@ function handleAdd(productId) {
   const item = items.find(p => p.id === productId);
   const currentQty = item ? item.quantity : 0;
 
-  if (currentQty + 1 > stock) {
+  // Validación de cantidad actual conta stock
+  if (currentQty + quantity > stock) {
     alert(`Stock insuficiente.`);
     return;
   }
 
-  cart.add(productId);
+  cart.add(productId, quantity); // pasamos la cantidad para l funcion del objeto carrito
   saveCart(cart);
   renderCartWithTotal();
 }
@@ -86,6 +87,35 @@ function setupSearch() {
     renderProducts(filtered, handleAdd);
   });
 }
+
+//restar uno al carrito
+document.addEventListener("click", function (event) {
+
+  // 🔹 RESTAR 1
+  const decreaseBtn = event.target.closest(".decrease");
+  if (decreaseBtn) {
+    const id = Number(decreaseBtn.dataset.id);
+
+    cart.remove(id, 1);
+
+    saveCart(cart);
+    renderCartWithTotal();
+    return;
+  }
+
+  // 🔹 ELIMINAR TODO
+  const removeBtn = event.target.closest(".danger");
+  if (removeBtn) {
+    const id = Number(removeBtn.dataset.id);
+
+    cart.remove(id);
+
+    saveCart(cart);
+    renderCartWithTotal();
+    return;
+  }
+
+});
 
 
 
