@@ -36,7 +36,7 @@ export class Product {
 }
 
 export const products = [
-  new Product(1, "Laptop", 800, 5, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBTF0Trz6nDdjFWDqsbcMcryfZaocJnhHdQ&s"),
+  new Product(1, "Laptop", 800, 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBTF0Trz6nDdjFWDqsbcMcryfZaocJnhHdQ&s"),
   new Product(2, "Mouse", 20, 10, "https://webobjects2.cdw.com/is/image/CDW/2881640?$product-main$"),
   new Product(3, "Teclado", 50, 7, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkYcLTrmWNaRi3B6-ebAYk-ZqXXeSrwLrVY5kmJ-h11w&s"),
   new Product(4, "Monitor 24''", 150, 4, "https://i5.walmartimages.com/seo/Norcent-24-Inch-Frameless-Computer-Monitor-FHD-75HZ-VA-with-Built-In-Speakers_23ea9d00-605d-49d3-b753-25b1f35668bd.cb85455b9112eeec2bab5b50862383aa.png"),

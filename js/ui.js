@@ -34,6 +34,7 @@ export function renderProducts(products, handleAdd) {
       <div class="product-body">
         <h3 class="product-title">${p.name}</h3>
         <p class="product-price">$${p.price}</p>
+        <span class="product-desc">${p.stock == 1? p.stock + " Disponible" : p.stock + " Disponibles"}</span>
       </div>
       <div class="product-actions">
         <button class="btn add">Agregar</button>
