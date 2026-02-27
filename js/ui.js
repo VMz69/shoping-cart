@@ -23,7 +23,7 @@ export function renderProducts(products, handleAdd) {
   const grid = document.querySelector(".products-grid");
   grid.innerHTML = "";
 
-  products.forEach(p => {
+  products.forEach((p) => {
     const card = document.createElement("div");
     card.classList.add("product-card");
 
@@ -31,17 +31,68 @@ export function renderProducts(products, handleAdd) {
       <div class="product-media">
         <img src="${p.image}" alt="${p.name}">
       </div>
+
       <div class="product-body">
         <h3 class="product-title">${p.name}</h3>
-        <p class="product-price">$${p.price}</p>
-        <span class="product-desc">${p.stock == 1? p.stock + " Disponible" : p.stock + " Disponibles"}</span>
+        <p class="product-price">$${Number(p.price).toFixed(2)}</p>
+        <span class="product-desc">
+          ${p.stock === 1 ? `${p.stock} Disponible` : `${p.stock ?? "—"} Disponibles`}
+        </span>
       </div>
+
       <div class="product-actions">
+        <div class="qty" data-id="${p.id}">
+          <button class="qty-dec" aria-label="Disminuir cantidad" type="button">-</button>
+          <input class="qty-input" type="number" inputmode="numeric"
+                 value="1" min="1" ${p.stock ? `max="${p.stock}"` : ""} aria-label="Cantidad" />
+          <button class="qty-inc" aria-label="Aumentar cantidad" type="button">+</button>
+        </div>
+
         <button class="btn add">Agregar</button>
       </div>
     `;
 
-    card.querySelector(".btn.add").addEventListener("click", () => handleAdd(p.id));
+    // ===== UI del stepper (sin lógica de negocio) =====
+    const input  = card.querySelector(".qty-input");
+    const decBtn = card.querySelector(".qty-dec");
+    const incBtn = card.querySelector(".qty-inc");
+    const addBtn = card.querySelector(".btn.add");
+
+    const clamp = (val) => {
+      const min = Number(input.min || 1);
+      const max = Number(input.max || Infinity);
+      return Math.max(min, Math.min(max, val));
+    };
+
+    decBtn.addEventListener("click", () => {
+      const next = clamp(Number(input.value || 1) - 1);
+      input.value = String(next);
+    });
+
+    incBtn.addEventListener("click", () => {
+      const next = clamp(Number(input.value || 1) + 1);
+      input.value = String(next);
+    });
+
+    // Validación suave al escribir
+    input.addEventListener("input", () => {
+      const n = Number(String(input.value).replace(/[^\d]/g, "")) || 1;
+      input.value = String(clamp(n));
+    });
+    input.addEventListener("blur", () => {
+      input.value = String(clamp(Number(input.value || 1)));
+    });
+
+    // Agregar con cantidad (si tu handleAdd solo acepta 1 arg, JS ignora el extra)
+    addBtn.addEventListener("click", () => {
+      const qty = clamp(Number(input.value || 1));
+      handleAdd(p.id, qty);
+      // Feedback visual rápido
+      addBtn.disabled = true;
+      addBtn.textContent = "Agregado ✓";
+      setTimeout(() => { addBtn.disabled = false; addBtn.textContent = "Agregar"; }, 800);
+    });
+
     grid.appendChild(card);
   });
 }

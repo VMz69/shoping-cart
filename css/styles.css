@@ -160,7 +160,7 @@ body {
    ========================= */
 .products-grid {
   display: grid;
-  /* columnas fluidas sin media queries */
+  /* columnas fluidas sin bootstrap jajaja  */
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: var(--gap);
 }
@@ -202,20 +202,20 @@ body {
 .product-title { font-size: 1rem; margin: 0; }
 .product-desc { color: var(--muted); font-size: var(--step--1); }
 .product-price { font-weight: 700; color: var(--brand); }
-
+ /* Estilo bontoncillos + - y agregar  */
 .product-actions {
   display: flex; justify-content: space-between; align-items: center;
   padding: 0.8rem 0.9rem;
   border-top: 1px solid rgba(0,0,0,0.06);
 }
 .qty {
-  display: inline-flex; align-items: center; gap: 0.35rem;
+  display: inline-flex; align-items: center; gap: 0.3y5rem;
   border: 1px solid rgba(0,0,0,0.12);
   border-radius: 999px;
   padding: 0.25rem 0.5rem;
 }
 .qty button {
-  width: 28px; height: 28px; border-radius: 50%;
+  width: 15px; height: 28px; border-radius: 50%;
   border: none; background: #f1f5f9; cursor: pointer;
 }
 .qty input {
