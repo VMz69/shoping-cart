@@ -79,3 +79,4 @@ export function processStockReduction(cartItems, allProducts) {
   
   return { success: true, message: "Venta procesada con éxito." };
 }
+

@@ -35,6 +35,21 @@ const cart = new Cart();
 cart.items = loadCart();
 
 function handleAdd(productId) {
+
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const stock = product.stock;
+
+  const items = cart.getItems();
+  const item = items.find(p => p.id === productId);
+  const currentQty = item ? item.quantity : 0;
+
+  if (currentQty + 1 > stock) {
+    alert(`Stock insuficiente.`);
+    return;
+  }
+
   cart.add(productId);
   saveCart(cart);
   renderCartWithTotal();
@@ -72,6 +87,8 @@ function setupSearch() {
   });
 }
 
+
+
 // Configura eventos para el proceso de checkout y generación de factura con modal
 function setupCheckout() {
   const modal = document.getElementById("invoice-modal");
@@ -107,11 +124,6 @@ function setupCheckout() {
     renderCartWithTotal();
     closeModal()
   }
-  // se debe vaciar el carrito al finalizar la compra
-    //   console.log("el carrito debe vaciarse")
-    // cart.clear()
-    // saveCart(cart);
-    // renderCartWithTotal();
 
   checkoutBtn.addEventListener("click", openModal);
   overlay.addEventListener("click", closeModal);
@@ -128,5 +140,7 @@ function setupCheckout() {
   });
   
 }
+
+
 
 init();

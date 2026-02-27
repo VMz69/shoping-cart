@@ -26,6 +26,8 @@ export function renderProducts(products, handleAdd) {
   products.forEach(p => {
     const card = document.createElement("div");
     card.classList.add("product-card");
+    card.dataset.id = p.id;//agregamos el id del producto (invisible) para identificarlo dentro del DOM
+    card.dataset.stock = p.stock; // agregamos la cantidad disponible segun inventario
 
     card.innerHTML = `
       <div class="product-media">
@@ -37,7 +39,7 @@ export function renderProducts(products, handleAdd) {
         <span class="product-desc">${p.stock == 1? p.stock + " Disponible" : p.stock + " Disponibles"}</span>
       </div>
       <div class="product-actions">
-        <button class="btn add">Agregar</button>
+        <button class="btn add add-btn">Agregar</button>
       </div>
     `;
 
