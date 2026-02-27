@@ -100,11 +100,25 @@ function setupCheckout() {
   const clearBtn = document.getElementById("clear-cart");
   const purchaseBtn = document.getElementById("purchase")
 
+ 
+// alerta personalizada para que se vea mejor
   function openModal() {
     if (cart.getItems().length === 0) {
-      alert("El carrito está vacío.");
+      Swal.fire({
+        title: 'Carrito vacío',
+        text: 'Agrega productos para continuar.',
+        imageUrl: 'https://i.ibb.co/JWyxD4Sy/vs-fail.png',
+        imageWidth: 140,
+        imageHeight: 140,
+        imageAlt: 'Carrito vacío',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#0b5cab',
+        background: '#ffffff',
+        color: '#1f2937'
+      });
       return;
     }
+  
 
     const { items, subtotal, tax, total } = generateInvoice(cart, products);
     renderInvoice({ items, total: { subtotal, impuestos: tax, final: total } });
@@ -118,7 +132,19 @@ function setupCheckout() {
   }
 
   function finalizePurchase(){
-    alert("Compra finalizada con exito")
+    Swal.fire({
+      title: 'Compra',
+      text: 'Finalizada con Exito.',
+      imageUrl: ' https://i.ibb.co/RpkWvKK9/VS-ok-Mesa-de-trabajo-1.png',
+      imageWidth: 140,
+      imageHeight: 140,
+      imageAlt: 'exito',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#0b5cab',
+      background: '#ffffff',
+      color: '#1f2937'
+    });
+   
     cart.clear()
     saveCart(cart);
     renderCartWithTotal();
