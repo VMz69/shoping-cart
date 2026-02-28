@@ -89,6 +89,9 @@ export function renderProducts(products, handleAdd) {
     addBtn.addEventListener("click", () => {
       const qty = clamp(Number(input.value || 1));
       handleAdd(p.id, qty);
+
+      //reiniciar stepper
+      input.value = "1";
       // Feedback visual rápido
       addBtn.disabled = true;
       addBtn.textContent = "Agregado ✓";

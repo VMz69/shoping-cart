@@ -23,11 +23,14 @@ Este módulo garantiza que el sistema funcione de manera organizada.
 
 
 
-import { products } from "./data.js";
+
 import { Cart } from "./cart.js";
 import { renderProducts, renderCart, renderInvoice } from "./ui.js";
-import { saveCart, loadCart } from "./storage.js";
+import { saveCart, loadCart, loadInventory, processStockReduction } from "./storage.js";
 import { getTotal, generateInvoice } from "./calculations.js";
+import { products as defaultProducts } from "./data.js";
+
+let products = loadInventory() || defaultProducts;
 
 const cart = new Cart();
 
@@ -47,11 +50,22 @@ function handleAdd(productId, quantity = 1) {
 
   // Validación de cantidad actual conta stock
   if (currentQty + quantity > stock) {
-    alert(`Stock insuficiente.`);
+    Swal.fire({
+        title: 'Stock Insuficiente',
+        text: 'Ya no quedan Existencias del producto seleccionado',
+        imageUrl: 'https://i.ibb.co/JWyxD4Sy/vs-fail.png',
+        imageWidth: 140,
+        imageHeight: 140,
+        imageAlt: 'Stock Insuficiente',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#0b5cab',
+        background: '#ffffff',
+        color: '#1f2937'
+      });
     return;
   }
 
-  cart.add(productId, quantity); // pasamos la cantidad para l funcion del objeto carrito
+  cart.add(productId, quantity); // pasamos la cantidad para la funcion del objeto carrito
   saveCart(cart);
   renderCartWithTotal();
 }
@@ -91,7 +105,7 @@ function setupSearch() {
 //restar uno al carrito
 document.addEventListener("click", function (event) {
 
-  // 🔹 RESTAR 1
+  //  RESTAR 1
   const decreaseBtn = event.target.closest(".decrease");
   if (decreaseBtn) {
     const id = Number(decreaseBtn.dataset.id);
@@ -103,7 +117,7 @@ document.addEventListener("click", function (event) {
     return;
   }
 
-  // 🔹 ELIMINAR TODO
+  //  ELIMINAR TODO
   const removeBtn = event.target.closest(".danger");
   if (removeBtn) {
     const id = Number(removeBtn.dataset.id);
@@ -161,8 +175,24 @@ function setupCheckout() {
     document.body.style.overflow = "";
   }
 
-  function finalizePurchase(){
+
+  function finalizePurchase() {
+
+  const cartItems = cart.getItems();
+
+  //usar funcion de JoseAquino
+  const result = processStockReduction(cartItems, products);
+
+  if (!result.success) {
     Swal.fire({
+      title: "Error",
+      text: result.message,
+      icon: "error"
+    });
+    return;
+  }
+
+  Swal.fire({
       title: 'Compra',
       text: 'Finalizada con Exito.',
       imageUrl: ' https://i.ibb.co/RpkWvKK9/VS-ok-Mesa-de-trabajo-1.png',
@@ -174,12 +204,14 @@ function setupCheckout() {
       background: '#ffffff',
       color: '#1f2937'
     });
-   
-    cart.clear()
-    saveCart(cart);
-    renderCartWithTotal();
-    closeModal()
-  }
+
+  cart.clear();
+  saveCart(cart);
+
+  renderProducts(products, handleAdd); // actualizar stock visual
+  renderCartWithTotal();
+  closeModal();
+}
 
   checkoutBtn.addEventListener("click", openModal);
   overlay.addEventListener("click", closeModal);
