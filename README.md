@@ -33,7 +33,7 @@ La aplicación permite a los usuarios:
 * Programación Orientada a Objetos (POO)
 * LocalStorage
 * Git y GitHub
-* GitHub Pages / Netlify / Vercel (hosting)
+* GitHub Pages (hosting)
 
 ---
 
@@ -59,8 +59,6 @@ El sistema utiliza clases para organizar la lógica del proyecto:
 
 * Producto
 * Carrito
-* Factura
-* Inventario
 
 Esto permite una estructura modular, reutilizable y fácil de mantener.
 
@@ -70,31 +68,32 @@ Esto permite una estructura modular, reutilizable y fácil de mantener.
 
 El proyecto se desarrolló en equipo, asignando responsabilidades específicas:
 
-**Persona 1 – UI y productos**
+**William Montano – UI y productos**
 
 * Diseño visual.
 * Renderizado de productos.
 * Estilos CSS.
 
-**Persona 2 – Carrito**
+**Milton Ayala – Carrito**
 
 * Lógica para agregar y eliminar productos.
 * Manejo del estado del carrito.
 
-**Persona 3 – Facturación**
+**Fernando Gomez – Facturación**
 
 * Generación de factura.
 * Cálculo de impuestos.
 
-**Persona 4 – Inventario y validaciones**
+**Jose Aquino – Inventario y validaciones**
 
 * Control de stock.
 * Validación de entradas.
 
-**Persona 5 – Coordinación y documentación**
+**Victor Velasco – Coordinación y documentación**
 
 * Integración del sistema.
 * Uso de Git y control de versiones.
+* Administracion de Ramas
 * Despliegue en hosting.
 * Documentación.
 
@@ -115,13 +114,14 @@ El proyecto se desarrolló en equipo, asignando responsabilidades específicas:
 │   ├── data.js
 │   ├── main.js
 │   ├── storage.js
-│   └──ui.js
+│   └── ui.js
 │
 ├── /css
 │   └── styles.css
 │
 └── /docs
-    └── documento.docx
+    └── Documentacion de proyecto.pdf
+    └── CARATULA.txt
 ```
 
 ---
@@ -149,7 +149,7 @@ No se requiere instalación adicional.
 ## 🌐 Despliegue
 
 El proyecto está disponible en:
-👉 **[Enlace del sitio web aquí]**
+👉 ** https://vmz69.github.io/shoping-cart/   **
 
 ---
 
@@ -170,8 +170,9 @@ Se entrega un documento adicional que explica:
 
 * Arquitectura del sistema.
 * Flujo de funcionamiento.
-* Diseño de clases.
-* Decisiones técnicas.
+* Asignacion de responabilidades.
+
+La ruta de dicho documento es la siguiente:
 
 ---
 
@@ -184,12 +185,6 @@ Este proyecto cumple con:
 * Hosting.
 * Funcionalidad.
 * Documentación.
-
----
-
-## 🎨 Creatividad
-
-El diseño y los productos pueden ser personalizados para diferentes tipos de tiendas (tecnología, ropa, videojuegos, etc.).
 
 ---
 
