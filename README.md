@@ -173,7 +173,7 @@ Se entrega un documento adicional que explica:
 * Asignacion de responabilidades.
 
 La ruta de dicho documento es la siguiente:
-
+https://github.com/VMz69/shoping-cart/blob/main/docs/Documentacion%20de%20Proyecto.pdf
 ---
 
 ## 📊 Evaluación
