@@ -178,6 +178,7 @@ https://github.com/VMz69/shoping-cart/blob/main/docs/Documentacion%20de%20Proyec
 
 Se adjunta tambien Archivo de CARATULA en formato texto plano en la siguiente ruta:
 https://github.com/VMz69/shoping-cart/blob/main/docs/CARATULA.txt
+
 ---
 
 ## 📊 Evaluación
